@@ -16,7 +16,7 @@ func adders(result string, parts, left int) int {
 				sum += 1
 			}
 		}
-		//fmt.Println(result)
+		fmt.Println(result)
 		return sum
 	}
 	sum := 0
