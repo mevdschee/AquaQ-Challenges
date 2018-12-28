@@ -2,20 +2,20 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"io/ioutil"
+	"strings"
 )
 
 func main() {
 	input, _ := ioutil.ReadFile("input.txt")
 	line := strings.TrimSpace(string(input))
-	roomStrings := strings.Split("  ##  \n #### \n######\n######\n #### \n  ##  ","\n")
-	ymax := len(roomStrings)-1
-	xmax := len(roomStrings[0])-1
+	roomStrings := strings.Split("  ##  \n #### \n######\n######\n #### \n  ##  ", "\n")
+	ymax := len(roomStrings) - 1
+	xmax := len(roomStrings[0]) - 1
 	rooms := map[int]bool{}
-	for y,str := range roomStrings {
-		for x,c := range str {
-			if c=='#' {
+	for y, str := range roomStrings {
+		for x, c := range str {
+			if c == '#' {
 				rooms[y*10+x] = true
 			}
 		}
@@ -23,7 +23,7 @@ func main() {
 	x := 2
 	y := 0
 	sum := 0
-	for _,c := range line {
+	for _, c := range line {
 		nx := x
 		ny := y
 		switch c {
@@ -44,7 +44,7 @@ func main() {
 				nx += 1
 			}
 		}
-		_, found := rooms[ny * 10 + nx]
+		_, found := rooms[ny*10+nx]
 		if !found {
 			nx = x
 			ny = y
