@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func adders(result string, left, parts int) int {
+func adders(result string, parts, left int) int {
 	if parts == 1 {
 		result += strconv.Itoa(left) + " "
 		sum := 0
@@ -21,7 +21,7 @@ func adders(result string, left, parts int) int {
 	}
 	sum := 0
 	for i := 0; i <= left; i++ {
-		sum += adders(result+strconv.Itoa(i)+" ", left-i, parts-1)
+		sum += adders(result+strconv.Itoa(i)+" ", parts-1, left-i)
 	}
 	return sum
 }
@@ -31,5 +31,5 @@ func main() {
 	line := strings.Split(strings.TrimSpace(string(input)), " numbers which sum to ")
 	parts, _ := strconv.Atoi(line[0])
 	target, _ := strconv.Atoi(line[1])
-	fmt.Println(adders("", target, parts))
+	fmt.Println(adders("", parts, target))
 }
