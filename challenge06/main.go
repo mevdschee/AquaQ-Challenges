@@ -9,7 +9,7 @@ import (
 
 func adders(result string, parts, left int) int {
 	if parts == 1 {
-		result += strconv.Itoa(left) + " "
+		result += strconv.Itoa(left)
 		sum := 0
 		for _, c := range result {
 			if c == '1' {
