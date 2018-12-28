@@ -12,11 +12,11 @@ func main() {
 	roomStrings := strings.Split("  ##  \n #### \n######\n######\n #### \n  ##  ","\n")
 	ymax := len(roomStrings)-1
 	xmax := len(roomStrings[0])-1
-	rooms := map[int]int{}
+	rooms := map[int]bool{}
 	for y,str := range roomStrings {
 		for x,c := range str {
 			if c=='#' {
-				rooms[y*10+x] = y+x
+				rooms[y*10+x] = true
 			}
 		}
 	}
@@ -44,13 +44,12 @@ func main() {
 				nx += 1
 			}
 		}
-		num, found := rooms[ny*10+nx]
+		_, found := rooms[ny*10+nx]
 		if !found {
 			nx = x
 			ny = y
-			num, _ = rooms[ny*10+nx]
 		}
-		sum += num
+		sum += y + x
 		x = nx
 		y = ny
 	}
