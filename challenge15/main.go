@@ -18,21 +18,13 @@ func readWords(filename string) map[string]bool {
 
 func findTransformations(word1 string, words map[string]bool) []string {
 	transformations := []string{}
-	for word2 := range words {
-		if len(word1) != len(word2) {
-			continue
-		}
-		differences := 0
-		for i := 0; i < len(word1); i++ {
-			if word1[i] != word2[i] {
-				differences++
+	letters := "abcdefghijklmnopqrstuvwxyz"
+	for i := range word1 {
+		for j := range letters {
+			word2 := word1[:i] + letters[j:j+1] + word1[i+1:]
+			if words[word2] && word2 != word1 {
+				transformations = append(transformations, word2)
 			}
-			if differences > 1 {
-				break
-			}
-		}
-		if differences == 1 {
-			transformations = append(transformations, word2)
 		}
 	}
 	return transformations
@@ -75,7 +67,7 @@ func main() {
 		source := transformation[0]
 		target := transformation[1]
 		path, found := findShortestPath(source, target, words)
-		//fmt.Println(path)
+		fmt.Println(path)
 		if found {
 			product *= len(strings.Split(path, " "))
 		}
