@@ -36,16 +36,15 @@ func findShortestPath(sourceWord, targetWord string, words map[string]bool) (str
 	for {
 		newPaths := map[string]string{}
 		for path, currentWord := range paths {
-			if seen[currentWord] {
-				continue
-			}
-			seen[currentWord] = true
-			for _, nextWord := range findTransformations(currentWord, words) {
-				newPath := path + " " + nextWord
-				if nextWord == targetWord {
-					return newPath, true
+			if !seen[currentWord] {
+				seen[currentWord] = true
+				for _, nextWord := range findTransformations(currentWord, words) {
+					newPath := path + " " + nextWord
+					if nextWord == targetWord {
+						return newPath, true
+					}
+					newPaths[newPath] = nextWord
 				}
-				newPaths[newPath] = nextWord
 			}
 		}
 		paths = newPaths
