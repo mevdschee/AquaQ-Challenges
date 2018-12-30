@@ -67,7 +67,7 @@ func main() {
 		source := transformation[0]
 		target := transformation[1]
 		path, found := findShortestPath(source, target, words)
-		fmt.Println(path)
+		//fmt.Println(path)
 		if found {
 			product *= len(strings.Split(path, " "))
 		}
