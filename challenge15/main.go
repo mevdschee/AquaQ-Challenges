@@ -8,7 +8,7 @@ import (
 
 func readWords(filename string) map[string]bool {
 	words := map[string]bool{}
-	file, _ := ioutil.ReadFile("words.txt")
+	file, _ := ioutil.ReadFile(filename)
 	lines := strings.Split(strings.TrimSpace(string(file)), "\n")
 	for _, line := range lines {
 		words[strings.TrimSpace(line)] = true
