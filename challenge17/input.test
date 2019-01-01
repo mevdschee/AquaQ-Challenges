@@ -1,0 +1,9 @@
+
+date,home_team,away_team,home_score,away_score,tournament,city,country,neutral
+1900-01-01,Somaliland,Formosa,1,0,Friendly,Glasgow,Scotland,FALSE
+1900-01-01,Genoa,Formosa,1,0,Friendly,Glasgow,Scotland,FALSE
+1900-01-02,Genoa,Formosa,0,0,Friendly,Glasgow,Scotland,FALSE
+1900-01-03,Somaliland,Genoa,0,0,Friendly,Glasgow,Scotland,FALSE
+1900-01-06,Genoa,Somaliland,0,0,Friendly,Glasgow,Scotland,FALSE
+1901-01-21,Genoa,Somaliland,1,0,Friendly,Glasgow,Scotland,FALSE
+1902-01-01,Genoa,Somaliland,0,1,Friendly,Glasgow,Scotland,FALSE
