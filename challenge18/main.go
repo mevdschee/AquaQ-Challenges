@@ -43,7 +43,7 @@ func main() {
 		time := h*3600 + m*60 + s
 		min := math.MaxInt32
 		for _, t := range palindromeTimes {
-			for day := -1; day <= 1; day++ {
+			for day := 0; day <= 1; day++ {
 				dt := t - time + day*24*3600
 				if dt < 0 {
 					dt *= -1
