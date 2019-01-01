@@ -43,20 +43,14 @@ func main() {
 		time := h*3600 + m*60 + s
 		min := math.MaxInt32
 		for _, t := range palindromeTimes {
-			dt := t - time
-			if dt < 0 {
-				dt *= -1
-			}
-			if dt < min {
-				min = dt
-			}
-			// for crossing midnight
-			dt = t - time + 24*3600
-			if dt < 0 {
-				dt *= -1
-			}
-			if dt < min {
-				min = dt
+			for day := -1; day <= 1; day++ {
+				dt := t - time + day*24*3600
+				if dt < 0 {
+					dt *= -1
+				}
+				if dt < min {
+					min = dt
+				}
 			}
 		}
 		sum += min
