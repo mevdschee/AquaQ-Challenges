@@ -15,7 +15,7 @@ func main() {
 	maxCountry := ""
 	maxFrom := ""
 	maxUntil := ""
-	for _, line := range lines {
+	for _, line := range lines[1:] {
 		fields := strings.Split(line, ",")
 		date := fields[0]
 		teams := fields[1:3]
