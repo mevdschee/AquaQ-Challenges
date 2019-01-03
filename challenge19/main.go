@@ -7,6 +7,21 @@ import (
 	"strings"
 )
 
+func fieldToString(field map[int]bool, size int) string {
+	str := "\033[2J\033[;H"
+	for y := 0; y < size; y++ {
+		for x := 0; x < size; x++ {
+			if field[y*1000+x] {
+				str += "#"
+			} else {
+				str += "."
+			}
+		}
+		str += "\n"
+	}
+	return str
+}
+
 func main() {
 	file, _ := ioutil.ReadFile("input.txt")
 	lines := strings.Split(strings.TrimSpace(string(file)), "\n")
