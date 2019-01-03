@@ -40,7 +40,7 @@ func main() {
 		//fmt.Println(strings.Join(rows, "\n"))
 
 		fieldSeen := map[string]int{}
-		rowSeen := map[string]string{}
+		rowSeen := map[string][]byte{}
 		for i := 0; i < steps; i++ {
 			str := strings.Join(rows, "")
 			j, found := fieldSeen[str]
@@ -53,6 +53,7 @@ func main() {
 				source := strings.Join(rows[y:y+3], "")
 				newRow, found := rowSeen[source]
 				if !found {
+					newRow = make([]byte, size)
 					for x := 0; x < size; x++ {
 						count := 0
 						if x > 0 {
@@ -72,14 +73,14 @@ func main() {
 							count++
 						}
 						if count%2 == 1 {
-							newRow += "#"
+							newRow[x] = '#'
 						} else {
-							newRow += "."
+							newRow[x] = '.'
 						}
 					}
 					rowSeen[source] = newRow
 				}
-				newRows = append(newRows, newRow)
+				newRows = append(newRows, string(newRow))
 			}
 			newRows = append(newRows, emptyRow)
 			fieldSeen[str] = i
