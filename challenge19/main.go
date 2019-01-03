@@ -41,7 +41,7 @@ func main() {
 
 		seen := map[string]int{}
 		for i := 0; i < steps; i++ {
-			str := strings.Join(rows, "\n")
+			str := strings.Join(rows, "")
 			j, found := seen[str]
 			if found {
 				seen = map[string]int{}
@@ -83,7 +83,7 @@ func main() {
 			rows = newRows
 			//fmt.Println(strings.Join(rows, "\n"))
 		}
-		sum += strings.Count(strings.Join(rows, "\n"), "#")
+		sum += strings.Count(strings.Join(rows, ""), "#")
 	}
 	fmt.Println(sum)
 }
