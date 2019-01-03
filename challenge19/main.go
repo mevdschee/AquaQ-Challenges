@@ -41,7 +41,7 @@ func main() {
 
 		seen := map[string]int{}
 		for i := 0; i < steps; i++ {
-			str := strings.Join(rows, "")
+			str := strings.Join(rows, "\n")
 			j, found := seen[str]
 			if found {
 				seen = map[string]int{}
