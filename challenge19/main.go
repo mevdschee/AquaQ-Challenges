@@ -12,30 +12,23 @@ func main() {
 	lines := strings.Split(strings.TrimSpace(string(file)), "\n")
 	sum := 0
 	for _, line := range lines {
-		field := map[int]bool{}
 		parts := strings.Split(line, " ")
 		steps, _ := strconv.Atoi(parts[0])
 		size, _ := strconv.Atoi(parts[1])
+
+		emptyRow := strings.Repeat(" ", size)
+		rows := []string{}
+		for y := 0; y < size+2; y++ {
+			rows = append(rows, emptyRow)
+		}
+
 		for p := 2; p < len(parts); p += 2 {
 			x, _ := strconv.Atoi(parts[p+1])
 			y, _ := strconv.Atoi(parts[p])
-			field[y*1000+x] = true
+			line := []byte(rows[y])
+			line[x] = '#'
+			rows[y+1] = string(line)
 		}
-
-		emptyRow := strings.Repeat(" ", size)
-		rows := []string{emptyRow}
-		for y := 0; y < size; y++ {
-			row := ""
-			for x := 0; x < size; x++ {
-				if field[y*1000+x] {
-					row += "#"
-				} else {
-					row += "."
-				}
-			}
-			rows = append(rows, row)
-		}
-		rows = append(rows, emptyRow)
 
 		//fmt.Println(strings.Join(rows, "\n"))
 
