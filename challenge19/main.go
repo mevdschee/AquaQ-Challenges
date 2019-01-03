@@ -39,51 +39,46 @@ func main() {
 
 		//fmt.Println(strings.Join(rows, "\n"))
 
-		fieldSeen := map[string]int{}
-		rowSeen := map[string][]byte{}
+		seen := map[string]int{}
 		for i := 0; i < steps; i++ {
 			str := strings.Join(rows, "")
-			j, found := fieldSeen[str]
+			j, found := seen[str]
 			if found {
-				fieldSeen = map[string]int{}
+				seen = map[string]int{}
 				steps = i + (steps-j)%(i-j)
 			}
 			newRows := []string{emptyRow}
 			for y := 0; y < size; y++ {
 				source := strings.Join(rows[y:y+3], "")
-				newRow, found := rowSeen[source]
-				if !found {
-					newRow = make([]byte, size)
-					for x := 0; x < size; x++ {
-						count := 0
-						if x > 0 {
-							if source[x+size-1] == '#' {
-								count++
-							}
-						}
-						if x < size-1 {
-							if source[x+size+1] == '#' {
-								count++
-							}
-						}
-						if source[x] == '#' {
+				newRow := make([]byte, size)
+				for x := 0; x < size; x++ {
+					count := 0
+					if x > 0 {
+						if source[x+size-1] == '#' {
 							count++
-						}
-						if source[x+2*size] == '#' {
-							count++
-						}
-						if count%2 == 1 {
-							newRow[x] = '#'
-						} else {
-							newRow[x] = '.'
 						}
 					}
-					rowSeen[source] = newRow
+					if x < size-1 {
+						if source[x+size+1] == '#' {
+							count++
+						}
+					}
+					if source[x] == '#' {
+						count++
+					}
+					if source[x+2*size] == '#' {
+						count++
+					}
+					if count%2 == 1 {
+						newRow[x] = '#'
+					} else {
+						newRow[x] = '.'
+					}
 				}
 				newRows = append(newRows, string(newRow))
 			}
 			newRows = append(newRows, emptyRow)
-			fieldSeen[str] = i
+			seen[str] = i
 
 			rows = newRows
 			//fmt.Println(strings.Join(rows, "\n"))
